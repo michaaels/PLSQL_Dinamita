@@ -1,1 +1,93 @@
+--COMENTARIO 1 --
+/** COMENTARIO 2 */
+SET SERVEROUTPUT ON;-- ON | OFF -> LA SALIDA EN CONSOLA --
 
+BEGIN
+    dbms_output.put_line(1);    /* NUMEROS*/
+    dbms_output.put_line('Hola');   -- 'STRING' comillas simples --     
+    dbms_output.put_line('Hola' || 'CONCATENA'); --  Para concatenar usamos || dos tuberias (PIPES) --
+END;
+
+-- DECLARACIÓN DE VARIABLES ---
+DECLARE
+    salario  NUMBER(2) := 10; -- PARA ASIGNAR VALOR ES NECESARIO USAR := --
+    name     VARCHAR2(100);
+    lastname VARCHAR2(100);
+BEGIN
+    name := 'MICHAEL';
+    lastname := 'SÁNCHEZ';
+    dbms_output.put_line('NOMBRE: ' || name);
+    dbms_output.put_line('APELLIDO: ' || lastname);
+END;
+
+
+/* CREAR CONSTANTE */
+DECLARE
+    x CONSTANT NUMBER := 10; -- CONSTANT DECLARA EN MODO LECTURA
+    prueba_const CONSTANT NUMBER := 15;
+    z NUMBER NOT NULL := 20;
+BEGIN
+    --z := null; -- ERROR PORQUE ESTA DECLARADA COMO NOT NULL
+    dbms_output.put_line(x + z);
+END;
+
+
+-- BOOLEAN
+
+DECLARE
+    B BOOLEAN;
+BEGIN
+    B:=TRUE;
+    B:=FALSE;
+    B:=NULL;
+END;
+    
+    
+-- %TYPE  PERMITE CAMBIAR EL TIPO DE VARIABLE POR EJEMPLO  SE PUEDE CAMBIAR UNA VARIABLE A UNA COLUMNA O TABLA
+
+DECLARE
+    X NUMBER;
+    Z X%TYPE; -- SE LE ASIGNA EL TIPO DE VARIABLE DE X
+    EMP EMPLOYEES.SALARY%TYPE; -- TABLA.COLUMNA %TYPE SE LE ASIGNA EL TIPO DE VARIABLE
+BEGIN
+    EMP:=100;
+END;
+
+    
+
+/*  OPERADORES
+
++  SUMA 
+-  RESTA
+/  DIVISION
+*  MULTIPLICACIÓN
+** EXPONENTE
+|| CONCATENAS
+
+*/
+
+
+DECLARE
+    X NUMBER; -- NULL YA QUE NO TIENE ASIGNADO NINGUNA VARIABLE
+    Y X%TYPE:=20;
+    NAME VARCHAR2(100):='MICHAEL';
+    D DATE:='10-05-2019';
+BEGIN
+    DBMS_OUTPUT.PUT_LINE(X+Y); -- NO MUESTA NADA, LA VARAIBLE ES NULL
+    X:=5;
+    DBMS_OUTPUT.put_line(X+Y);
+    DBMS_OUTPUT.put_line(X-Y);
+    DBMS_OUTPUT.put_line(Y/X);
+    DBMS_OUTPUT.put_line(X*Y);
+    DBMS_OUTPUT.put_line(X**Y);
+    DBMS_OUTPUT.put_line('HOLA '||NAME||' LA FECHA ES: '||D);
+    DBMS_OUTPUT.put_line(X**Y);
+    DBMS_OUTPUT.put_line(X**Y);
+    DBMS_OUTPUT.put_line(D+100); -- Le añade n dias
+    DBMS_OUTPUT.put_line(SYSDATE-D); -- Trae los dias entre las fechas -> SYSDATE+D no funciona revisar porque
+END;
+
+--------------------------------------------------------
+ select current_date from dual;--OBTENER FECHA
+ select current_timestamp from dual; -- FECHA COMPLETA
+--------------------------------------------------------
